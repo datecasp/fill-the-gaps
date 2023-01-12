@@ -8,21 +8,40 @@ import { VerbAttribute } from '../models/VerbAttribute';
   providedIn: 'root'
 })
 export class VerbsService {
+  private verbList: Verb[] | any;
+  private verbAttributeList: VerbAttribute[] | any;
 
-  constructor(private verbsRepo: VerbsRepository ) { }
+  constructor(private verbsRepo: VerbsRepository) {
+    this.verbList = this.verbsRepo.getVerbsList();
+  }
 
   public getVerbsListService(): Verb[] {
-    return this.verbsRepo.getVerbsList();
+    return this.verbList;
   }
 
-  public getRandomVerb(): Verb[] | any {
-    
+  public getRandomVerbService(): Verb | any {
+    return this.verbList[Math.floor(Math.random() * this.verbList.length)];
   }
 
-  public getRandomVerbAttribute(verb: Verb): Verb | any{
-    
-    
+  public getRandomVerbAttributesService(verb: Verb): VerbAttribute[] | any{
+    switch (Math.floor(Math.random() * 4)) {
+      case 0:
 
-    
+        this.verbAttributeList[0].id = 0;
+        this.verbAttributeList[0].attribute = verb.spanish;
+        break;
+      case 1:
+        this.verbAttributeList[0].id = 1;
+        this.verbAttributeList[0].attribute = verb.present;
+        break;
+      case 2:
+        this.verbAttributeList[0].id = 2;
+        this.verbAttributeList[0].attribute = verb.past;
+        break;
+      case 3:
+        this.verbAttributeList[0].id = 3;
+        this.verbAttributeList[0].attribute = verb.participle;
+        break;
+    }
   }
 }
