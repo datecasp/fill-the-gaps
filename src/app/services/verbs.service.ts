@@ -9,17 +9,20 @@ import { VerbAttribute } from '../models/VerbAttribute';
 })
 export class VerbsService {
 
-  constructor(private verbsRepo: VerbsRepository) { }
+  constructor(private verbsRepo: VerbsRepository ) { }
 
   public getVerbsListService(): Verb[] {
     return this.verbsRepo.getVerbsList();
   }
 
-  public getRandomVerbsList(verbsNum: number): Verb[] | any {
-    return null;
+  public getRandomVerb(): Verb[] | any {
+    
   }
 
-  public getRandomVerbAttribute(verb: Verb): VerbAttribute | any{
+  public getRandomVerbAttribute(verb: Verb): Verb | any{
+    
+    
 
+    
   }
 }

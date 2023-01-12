@@ -1,16 +1,9 @@
 <div class="container">
-    <h1>{{title}}</h1>
-
-    <mat-grid-list *ngFor="let verb of verbs" cols="4">
-        <mat-grid-tile>
-            <span matPrefix>X &nbsp;&nbsp;</span>
-            <textarea matInput>
-                {{verb.spanish}}
-            </textarea>
-        </mat-grid-tile>
-        <mat-grid-tile>{{verb.present}}</mat-grid-tile>
-        <mat-grid-tile>{{verb.past}}</mat-grid-tile>
-        <mat-grid-tile>{{verb.participle}}</mat-grid-tile>
-
-    </mat-grid-list>
+  <h1 class="title">{{title}}</h1>
+  <h2 class="simpleText">A sentece for design</h2>
+  <h2 class="verb">Verb</h2>
+  <h2 class="simpleText">Another sentece for design</h2>
+  <div class="btnContainer">
+    <button mat-raised-button class="btnLetter" *ngFor="let letter of letters">{{letter}}</button>
+  </div>
 </div>

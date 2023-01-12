@@ -1,3 +1,40 @@
-mat-grid-tile {
-  background: lightblue;
+.container {
+  margin: 0 auto !important;
+  float: none !important;
+  width: 800px;
+  height: 350px;
+}
+
+.title {
+  text-align:center;
+  font-family: 'Ink Free';
+  font-size:60px;
+}
+
+.simpleText {
+  text-align: center;
+  text-justify: auto;
+  font-family: 'Ink Free';
+}
+
+.verb {
+  text-align: center;
+  text-justify: auto;
+  font-family: 'Ink Free';
+  font-size: 30px;
+}
+
+.btnContainer {
+  margin: 0 auto !important;
+  float: none !important;
+  justify-content: center;
+  display: flex;
+}
+
+.btnLetter {
+  width: 100px;
+  height: 125px;
+  font-family: 'Ink Free';
+  font-size: 30px;
+  margin: 15px 10px;
 }
