@@ -22,7 +22,7 @@ export const VERBS_LIST: Verb[] = [
   { id: 0, spanish: "beber", present: "drink", past: "drank", participle: "drunk" },
   { id: 0, spanish: "conducir", present: "drive", past: "drove", participle: "driven" },
   { id: 0, spanish: "pelear", present: "fight", past: "fought", participle: "fought" },
-  { id: 0, spanish: "buscar", present: "find", past: "found", participle: "found" },
+  { id: 0, spanish: "encontrar", present: "find", past: "found", participle: "found" },
   { id: 0, spanish: "volar", present: "fly", past: "flew", participle: "flown" },
   { id: 0, spanish: "olvidar", present: "forget", past: "forgot", participle: "forgotten" },
   { id: 0, spanish: "perdonar", present: "forgive", past: "forgave", participle: "forgiven" },

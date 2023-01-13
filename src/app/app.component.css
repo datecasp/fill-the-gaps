@@ -21,7 +21,15 @@
   text-align: center;
   text-justify: auto;
   font-family: 'Ink Free';
-  font-size: 30px;
+  font-size: 45px;
+}
+
+.clue {
+  text-align: center;
+  text-justify: auto;
+  font-family: 'Ink Free';
+  font-size: 35px;
+  font-weight: bolder;
 }
 
 .btnContainer {
@@ -34,10 +42,10 @@
 .btnLetter {
   width: auto;
   height: auto;
-  aspect-ratio:4/7;
+  aspect-ratio:5/7;
   font-family: 'Ink Free';
   font-size: x-large;
-  margin: 15px 10px;
+  margin: 15px 20px;
 }
 
 #gap {

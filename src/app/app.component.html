@@ -1,8 +1,8 @@
 <div class="container">
   <h1 class="title">{{title}}</h1>
-  <h2 class="simpleText">If this verb in  is </h2>
-  <h2 class="verb"></h2>
-  <h2 class="simpleText">Complete the gaps to write it in </h2>
+  <h2 class="simpleText">If this verb in <a class="clue">{{completeVerbAttribute.attributeType}}</a> is </h2>
+  <h2 class="verb">{{completeVerbAttribute.attribute}}</h2>
+  <h2 class="simpleText">Complete the gaps to write it in <a class="clue">{{gappedVerbAttribute.attributeType}}</a></h2>
   <div class="btnContainer">
     <button mat-raised-button class="btnLetter" id="gap" *ngFor="let letter of letters">{{letter}}</button>
   </div>

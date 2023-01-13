@@ -9,7 +9,7 @@ import { VerbAttribute } from '../models/VerbAttribute';
 })
 export class VerbsService {
   private verbList: Verb[] | any;
-  private verbAttributeList: VerbAttribute[] | any;
+  private verbAttribute: VerbAttribute | any;
 
   constructor(private verbsRepo: VerbsRepository) {
     this.verbList = this.verbsRepo.getVerbsList();
@@ -23,25 +23,30 @@ export class VerbsService {
     return this.verbList[Math.floor(Math.random() * this.verbList.length)];
   }
 
-  public getRandomVerbAttributesService(verb: Verb): VerbAttribute[] | any{
+  public getRandomVerbAttributesService(verb: Verb): VerbAttribute | any{
+    this.verbAttribute = { id: -1, attribute: "" };
     switch (Math.floor(Math.random() * 4)) {
       case 0:
-
-        this.verbAttributeList[0].id = 0;
-        this.verbAttributeList[0].attribute = verb.spanish;
+        this.verbAttribute.attributeType = "spanish";
+        this.verbAttribute.attribute = verb.spanish;
+        this.verbAttribute.id = 0;
         break;
       case 1:
-        this.verbAttributeList[0].id = 1;
-        this.verbAttributeList[0].attribute = verb.present;
+        this.verbAttribute.attributeType = "present";
+        this.verbAttribute.attribute = verb.present;
+        this.verbAttribute.id = 1;
         break;
       case 2:
-        this.verbAttributeList[0].id = 2;
-        this.verbAttributeList[0].attribute = verb.past;
+        this.verbAttribute.attributeType = "past";
+        this.verbAttribute.attribute = verb.past;
+        this.verbAttribute.id = 2;
         break;
       case 3:
-        this.verbAttributeList[0].id = 3;
-        this.verbAttributeList[0].attribute = verb.participle;
+        this.verbAttribute.attributeType = "participle";
+        this.verbAttribute.attribute = verb.participle;
+        this.verbAttribute.id = 3;
         break;
     }
+    return this.verbAttribute;
   }
 }
