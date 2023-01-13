@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { VerbsService } from './services/verbs.service';
 import { VERBS_LIST } from '../data/verbs-list';
 import { Verb } from './models/Verb';
+import { VerbAttribute } from './models/VerbAttribute';
+import { Tools } from './utils/tools';
 
 @Component({
   selector: 'app-root',
@@ -10,21 +12,33 @@ import { Verb } from './models/Verb';
 })
 export class AppComponent implements OnInit {
   title = 'Fill the gaps';
-  verbs: Verb[] | any;
   verb: Verb | any;
-  letters: string[] | any;
+  completeVerbAttribute: VerbAttribute | any;
+  gappedVerbAttribute: VerbAttribute | any;
+  letters: string[] | any; 
 
-  constructor(private verbsService: VerbsService) { }
+  constructor(private verbsService: VerbsService,
+    private tools: Tools) { }
 
   ngOnInit(): void {
-    this.verbs = this.verbsService.getVerbsListService();
-    this.verb = this.getVerb();
-    this.letters = Array.from(this.verb.present);
+    this.verb = this.getRandomVerb();
+    this.getRandomVerbAttributes(this.verb);
+    //this.letters = Array.from(this.gappedVerbAttribute.attribute);
+    this.letters = this.getRandomGapsGappedVerbAttribute(this.gappedVerbAttribute.attribute);
   }
 
-  private getVerb(): Verb {
-    return this.verbs[0];
+  private getRandomVerb(): Verb {
+    return this.verbsService.getRandomVerbService();
   }
 
+  private getRandomVerbAttributes(verb: Verb) {
+    this.completeVerbAttribute = this.verbsService.getRandomVerbAttributesService(verb);
+    do {
+      this.gappedVerbAttribute = this.verbsService.getRandomVerbAttributesService(verb);
+    } while (this.gappedVerbAttribute.id == this.completeVerbAttribute.id);
+  }
 
+  private getRandomGapsGappedVerbAttribute(attribute: string): string[] | any {
+    return this.tools.gappedArray(attribute);
+  }
 }

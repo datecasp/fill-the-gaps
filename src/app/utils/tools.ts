@@ -1,31 +1,31 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
-export class Utils {
-
-  numbers: number[] | any;
-
-  uniqueNumber: number | any;
-
-  /**
-   *   Gets a random number to randomize the verb selection
-   *   or the attribute of verb to show or search 
-   *   @param maxVal: number -> the top value for randomize
-   *    * Number of verbs in VERBS_LIST
-   *    * Number of Verb propieties
-   *    
-   * */
-  public getRandomUniqueNumber(maxVal: number): number[] {
-    let rdNum: number = Math.floor((Math.random() * maxVal) + 1);
-    if (!this.numbers.includes(rdNum)) {
-      this.numbers.push(rdNum);
-      return this.numbers;
+export class Tools {
+  public gappedArray(attribute: string): string[] | any {
+    let result: string[] = Array.from(attribute);
+    this.resetStringArray(result);
+    let attributeCharArray = Array.from(attribute);
+    if (attributeCharArray.length > 2) {
+      for (let i = 0; i < (attributeCharArray.length/2)-1; i++) {
+        if (!attributeCharArray[i].match(/[a-z]/i)) {
+          result[i] = attributeCharArray[i];
+        }
+        else {
+          let index = Math.floor(Math.random() * attributeCharArray.length);
+          result[index] = attributeCharArray[index]; 
+        }
+      }
     }
-    else if (this.numbers.length - 1 !== maxVal) {
-      this.getRandomUniqueNumber(maxVal);
+    return result;
+  }
+
+  public resetStringArray(array: string[]): string[] {
+    for (let i = 0; i < array.length; i++) {
+      array[i] = " ";
     }
-    return this.numbers;
+    return array;
   }
 }

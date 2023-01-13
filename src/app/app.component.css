@@ -21,7 +21,15 @@
   text-align: center;
   text-justify: auto;
   font-family: 'Ink Free';
-  font-size: 30px;
+  font-size: 45px;
+}
+
+.clue {
+  text-align: center;
+  text-justify: auto;
+  font-family: 'Ink Free';
+  font-size: 35px;
+  font-weight: bolder;
 }
 
 .btnContainer {
@@ -32,9 +40,17 @@
 }
 
 .btnLetter {
-  width: 100px;
-  height: 125px;
+  width: auto;
+  height: auto;
+  aspect-ratio:5/7;
   font-family: 'Ink Free';
-  font-size: 30px;
-  margin: 15px 10px;
+  font-size: x-large;
+  margin: 15px 20px;
 }
+
+#gap {
+  background-color: azure;
+  border-color: black;
+  border-style:double;
+}
+

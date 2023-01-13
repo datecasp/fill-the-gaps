@@ -8,21 +8,45 @@ import { VerbAttribute } from '../models/VerbAttribute';
   providedIn: 'root'
 })
 export class VerbsService {
+  private verbList: Verb[] | any;
+  private verbAttribute: VerbAttribute | any;
 
-  constructor(private verbsRepo: VerbsRepository ) { }
+  constructor(private verbsRepo: VerbsRepository) {
+    this.verbList = this.verbsRepo.getVerbsList();
+  }
 
   public getVerbsListService(): Verb[] {
-    return this.verbsRepo.getVerbsList();
+    return this.verbList;
   }
 
-  public getRandomVerb(): Verb[] | any {
-    
+  public getRandomVerbService(): Verb | any {
+    return this.verbList[Math.floor(Math.random() * this.verbList.length)];
   }
 
-  public getRandomVerbAttribute(verb: Verb): Verb | any{
-    
-    
-
-    
+  public getRandomVerbAttributesService(verb: Verb): VerbAttribute | any{
+    this.verbAttribute = { id: -1, attribute: "" };
+    switch (Math.floor(Math.random() * 4)) {
+      case 0:
+        this.verbAttribute.attributeType = "spanish";
+        this.verbAttribute.attribute = verb.spanish;
+        this.verbAttribute.id = 0;
+        break;
+      case 1:
+        this.verbAttribute.attributeType = "present";
+        this.verbAttribute.attribute = verb.present;
+        this.verbAttribute.id = 1;
+        break;
+      case 2:
+        this.verbAttribute.attributeType = "past";
+        this.verbAttribute.attribute = verb.past;
+        this.verbAttribute.id = 2;
+        break;
+      case 3:
+        this.verbAttribute.attributeType = "participle";
+        this.verbAttribute.attribute = verb.participle;
+        this.verbAttribute.id = 3;
+        break;
+    }
+    return this.verbAttribute;
   }
 }
