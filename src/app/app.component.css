@@ -44,13 +44,20 @@
   height: auto;
   aspect-ratio:5/7;
   font-family: 'Ink Free';
-  font-size: x-large;
+  font-size: xx-large;
   margin: 15px 20px;
+  font-weight: bolder;
 }
 
 #gap {
   background-color: azure;
   border-color: black;
   border-style:double;
+}
+
+#random {
+  background-color: antiquewhite;
+  border-color: black;
+  border-style: dashed;
 }
 

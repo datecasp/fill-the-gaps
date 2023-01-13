@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { VerbsService } from './services/verbs.service';
-import { VERBS_LIST } from '../data/verbs-list';
 import { Verb } from './models/Verb';
 import { VerbAttribute } from './models/VerbAttribute';
 import { Tools } from './utils/tools';
@@ -13,9 +12,12 @@ import { Tools } from './utils/tools';
 export class AppComponent implements OnInit {
   title = 'Fill the gaps';
   verb: Verb | any;
-  completeVerbAttribute: VerbAttribute | any;
+  clueVerbAttribute: VerbAttribute | any;
   gappedVerbAttribute: VerbAttribute | any;
-  letters: string[] | any; 
+  completeVerbAttribute: string[] | any;
+  btnGappedVerbAttribute: string[] | any;
+  btnRandomLetters: string[] | any;
+
 
   constructor(private verbsService: VerbsService,
     private tools: Tools) { }
@@ -23,8 +25,9 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.verb = this.getRandomVerb();
     this.getRandomVerbAttributes(this.verb);
-    //this.letters = Array.from(this.gappedVerbAttribute.attribute);
-    this.letters = this.getRandomGapsGappedVerbAttribute(this.gappedVerbAttribute.attribute);
+    this.completeVerbAttribute = Array.from(this.gappedVerbAttribute.attribute);
+    this.btnGappedVerbAttribute = this.getRandomGapsGappedVerbAttribute(this.gappedVerbAttribute.attribute);
+    this.btnRandomLetters = this.getRandomLetters(this.completeVerbAttribute, this.btnGappedVerbAttribute);
   }
 
   private getRandomVerb(): Verb {
@@ -32,13 +35,21 @@ export class AppComponent implements OnInit {
   }
 
   private getRandomVerbAttributes(verb: Verb) {
-    this.completeVerbAttribute = this.verbsService.getRandomVerbAttributesService(verb);
+    this.clueVerbAttribute = this.verbsService.getRandomVerbAttributesService(verb);
     do {
       this.gappedVerbAttribute = this.verbsService.getRandomVerbAttributesService(verb);
-    } while (this.gappedVerbAttribute.id == this.completeVerbAttribute.id);
+    } while (this.gappedVerbAttribute.id == this.clueVerbAttribute.id);
   }
 
   private getRandomGapsGappedVerbAttribute(attribute: string): string[] | any {
     return this.tools.gappedArray(attribute);
+  }
+
+  private getRandomLetters(gappedVerbAttribute: string[], btnGappedVerbAttribute: string[]): string[] {
+    return this.tools.randomLetters(gappedVerbAttribute, btnGappedVerbAttribute);
+  }
+
+  public btnGappedVerbOnClick(letter: string) {
+    
   }
 }

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { VerbsRepository } from '../repositories/verbs.repository';
-import { VERBS_LIST } from 'src/data/verbs-list';
 import { Verb } from '../models/Verb';
 import { VerbAttribute } from '../models/VerbAttribute';
 
@@ -10,13 +9,19 @@ import { VerbAttribute } from '../models/VerbAttribute';
 export class VerbsService {
   private verbList: Verb[] | any;
   private verbAttribute: VerbAttribute | any;
+  private abecedary: string[] = [];
 
   constructor(private verbsRepo: VerbsRepository) {
     this.verbList = this.verbsRepo.getVerbsList();
+    this.abecedary = this.verbsRepo.getAbecedary();
   }
 
   public getVerbsListService(): Verb[] {
     return this.verbList;
+  }
+
+  public getAbecedaryService(): string[] {
+    return this.abecedary;
   }
 
   public getRandomVerbService(): Verb | any {
