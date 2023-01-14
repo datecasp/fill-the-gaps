@@ -17,7 +17,10 @@ export class AppComponent implements OnInit {
   completeVerbAttribute: string[] | any;
   btnGappedVerbAttribute: string[] | any;
   btnRandomLetters: string[] | any;
-
+  isRandomLetterSlelectedFirst: boolean = false;
+  hasLetter: boolean = false;
+  selectedLetter: string = "";
+  selectedGapLetter: string = "";
 
   constructor(private verbsService: VerbsService,
     private tools: Tools) { }
@@ -28,6 +31,7 @@ export class AppComponent implements OnInit {
     this.completeVerbAttribute = Array.from(this.gappedVerbAttribute.attribute);
     this.btnGappedVerbAttribute = this.getRandomGapsGappedVerbAttribute(this.gappedVerbAttribute.attribute);
     this.btnRandomLetters = this.getRandomLetters(this.completeVerbAttribute, this.btnGappedVerbAttribute);
+    this.disableFilledButtons();
   }
 
   private getRandomVerb(): Verb {
@@ -49,7 +53,28 @@ export class AppComponent implements OnInit {
     return this.tools.randomLetters(gappedVerbAttribute, btnGappedVerbAttribute);
   }
 
+  private disableFilledButtons() {
+    for (let letter of this.btnGappedVerbAttribute) {
+      if (letter != " ") {
+        this.hasLetter = true;
+      }
+      else {
+        this.hasLetter = false;
+      }
+    }
+  }
+
   public btnGappedVerbOnClick(letter: string) {
-    
+    if (this.isRandomLetterSlelectedFirst) {
+      this.selectedGapLetter = this.selectedLetter;
+    }
+    else {
+    }
+    this.isRandomLetterSlelectedFirst = false;
+  }
+
+  public btnRandomLettersOnClick(letter: string) {
+    this.selectedLetter = letter;
+    this.isRandomLetterSlelectedFirst = true;
   }
 }

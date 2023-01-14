@@ -16,7 +16,7 @@ import { MaterialModule } from '../material.module';
     BrowserAnimationsModule,
     MatCardModule,
     DragDropModule,
-    MaterialModule
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
