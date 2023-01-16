@@ -1,0 +1,7 @@
+<div class="container">
+  <a *ngFor="let letter of btnGappedVerbAttribute">
+    <app-letter-button [letter]=(letter) *ngIf="charMatcher(letter); else blank"></app-letter-button>
+    <ng-template #blank><app-blank-button></app-blank-button></ng-template>
+  </a>
+  <app-random-letter-button [letter]=(letter) *ngFor="let letter of btnRandomLetters"></app-random-letter-button>
+</div>
