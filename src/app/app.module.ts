@@ -11,6 +11,8 @@ import { RandomLetterButtonComponent } from './components/random-letter-button/r
 import { LetterButtonRendererComponent } from './components/letter-button-renderer/letter-button-renderer.component';
 import { DragAndDropModule } from 'angular-draggable-droppable';
 import { BlankButtonComponent } from './components/blank-button/blank-button.component';
+import { SuccessDialogComponent } from './components/dialogs/success-dialog/success-dialog.component';
+import { FailDialogComponent } from './components/dialogs/fail-dialog/fail-dialog.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { BlankButtonComponent } from './components/blank-button/blank-button.com
     LetterButtonComponent,
     RandomLetterButtonComponent,
     LetterButtonRendererComponent,
-    BlankButtonComponent
+    BlankButtonComponent,
+    SuccessDialogComponent,
+    FailDialogComponent
   ],
   imports: [
     BrowserModule,

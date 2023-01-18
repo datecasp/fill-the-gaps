@@ -4,7 +4,8 @@
     <h2 class="verb">{{clueVerbAttribute.attribute}}</h2>
     <h2 class="simpleText">Complete the gaps to write it in <a class="clue">{{gappedVerbAttribute.attributeType}}</a></h2>
     <div class="btnContainer">
-        <app-letter-button-renderer [btnGappedVerbAttribute]="btnGappedVerbAttribute"></app-letter-button-renderer>
+        <app-letter-button-renderer [btnGappedVerbAttribute]="btnGappedVerbAttribute" (finalEvent)="checkResult($event)">
+        </app-letter-button-renderer>
     </div>
     <div class="btnContainer">
       <app-letter-button-renderer [btnRandomLetters]="btnRandomLetters"></app-letter-button-renderer>

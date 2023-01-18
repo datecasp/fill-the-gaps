@@ -15,14 +15,4 @@ import { DroppableDirective } from 'angular-draggable-droppable';
 export class RandomLetterButtonComponent {
 
   @Input() letter: string = "";
-
-  @ViewChild(DroppableDirective, { read: ElementRef, static: true })
-  droppableElement: ElementRef | any;
-
-  ngOnInit(): void {
-  }
-
-  dragEnd(event: any) {
-    console.log('Element was dragged', event);
-  }
 }

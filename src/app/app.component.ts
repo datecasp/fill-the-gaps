@@ -3,6 +3,9 @@ import { VerbsService } from './services/verbs.service';
 import { Verb } from './models/Verb';
 import { VerbAttribute } from './models/VerbAttribute';
 import { Tools } from './utils/tools';
+import { MatDialog } from '@angular/material/dialog';
+import { SuccessDialogComponent } from './components/dialogs/success-dialog/success-dialog.component';
+import { FailDialogComponent } from './components/dialogs/fail-dialog/fail-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -23,15 +26,19 @@ export class AppComponent implements OnInit {
   selectedGapLetter: string = "";
 
   constructor(private verbsService: VerbsService,
+    public dialog: MatDialog,
     private tools: Tools) { }
 
   ngOnInit(): void {
+    this.getValues();
+    }
+
+  private getValues() {
     this.verb = this.getRandomVerb();
     this.getRandomVerbAttributes(this.verb);
     this.completeVerbAttribute = Array.from(this.gappedVerbAttribute.attribute);
     this.btnGappedVerbAttribute = this.getRandomGapsGappedVerbAttribute(this.gappedVerbAttribute.attribute);
     this.btnRandomLetters = this.getRandomLetters(this.completeVerbAttribute, this.btnGappedVerbAttribute);
-    this.disableFilledButtons();
   }
 
   private getRandomVerb(): Verb {
@@ -53,28 +60,29 @@ export class AppComponent implements OnInit {
     return this.tools.randomLetters(gappedVerbAttribute, btnGappedVerbAttribute);
   }
 
-  private disableFilledButtons() {
-    for (let letter of this.btnGappedVerbAttribute) {
-      if (letter != " ") {
-        this.hasLetter = true;
+  public checkResult(resultArray: string[]) {
+    let success: boolean = false;
+    for (let i = 0; i < resultArray.length; i++) {
+      if (resultArray[i] != this.gappedVerbAttribute.attribute[i]) {
+        this.dialog.open(FailDialogComponent, {
+          data: {
+            height: '400px',
+            width: '600px',
+            name: this.gappedVerbAttribute.toString(),
+          }
+        });
+        break;
       }
-      else {
-        this.hasLetter = false;
-      }
+      success = true;
     }
-  }
-
-  public btnGappedVerbOnClick(letter: string) {
-    if (this.isRandomLetterSlelectedFirst) {
-      this.selectedGapLetter = this.selectedLetter;
+    if (success) {
+      this.dialog.open(SuccessDialogComponent, {
+        data: {
+          height: '400px',
+          width: '600px',
+          name: this.gappedVerbAttribute.toString(),
+        }
+      });
     }
-    else {
-    }
-    this.isRandomLetterSlelectedFirst = false;
-  }
-
-  public btnRandomLettersOnClick(letter: string) {
-    this.selectedLetter = letter;
-    this.isRandomLetterSlelectedFirst = true;
   }
 }
