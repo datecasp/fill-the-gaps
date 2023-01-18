@@ -61,26 +61,22 @@ export class AppComponent implements OnInit {
   }
 
   public checkResult(resultArray: string[]) {
-    let success: boolean = false;
+    let success: boolean = true;
     for (let i = 0; i < resultArray.length; i++) {
       if (resultArray[i] != this.gappedVerbAttribute.attribute[i]) {
         this.dialog.open(FailDialogComponent, {
           data: {
-            height: '400px',
-            width: '600px',
-            name: this.gappedVerbAttribute.toString(),
+            name: this.gappedVerbAttribute.toString()
           }
         });
+        success = false;
         break;
       }
-      success = true;
     }
     if (success) {
       this.dialog.open(SuccessDialogComponent, {
         data: {
-          height: '400px',
-          width: '600px',
-          name: this.gappedVerbAttribute.toString(),
+          name: this.gappedVerbAttribute.toString()
         }
       });
     }
