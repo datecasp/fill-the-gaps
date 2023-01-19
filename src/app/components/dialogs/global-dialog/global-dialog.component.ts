@@ -7,6 +7,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./global-dialog.component.css']
 })
 export class GlobalDialogComponent {
+  @Input() success: boolean = false;
   @Input() title: string = "";
   @Input() message: string = "";
   @Input() word: string = "";

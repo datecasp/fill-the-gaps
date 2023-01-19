@@ -64,14 +64,14 @@ export class AppComponent implements OnInit {
     let success: boolean = true;
     for (let i = 0; i < resultArray.length; i++) {
       if (resultArray[i] != this.gappedVerbAttribute.attribute[i]) {
-        this.finalDialogService.confirm('Oh shit... Wrong answer...',
-          'The correct word was ', this.gappedVerbAttribute.attribute);
         success = false;
+        this.finalDialogService.confirm(success, 'Oh shit... Wrong answer...',
+          'The correct word was ', this.gappedVerbAttribute.attribute);
         break;
       }
     }
     if (success) {
-      this.finalDialogService.confirm('Yeah Right!!! Nice answer!',
+      this.finalDialogService.confirm(success, 'Yeah Right!!! Nice answer!',
         'Perfect spelling of ', this.gappedVerbAttribute.attribute);
     }
   }

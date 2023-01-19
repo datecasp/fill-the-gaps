@@ -10,8 +10,8 @@
     <div class="btnContainer">
       <app-letter-button-renderer [btnRandomLetters]="btnRandomLetters"></app-letter-button-renderer>
     </div>
-  <div>
-    <button mat-raised-button class="btnContainer" (click)="newWord()">
+  <div class="btnContainer">
+    <button mat-raised-button id="btnNewWord" (click)="newWord()">
       New word
     </button>
   </div>
