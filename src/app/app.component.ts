@@ -3,6 +3,8 @@ import { VerbsService } from './services/verbs.service';
 import { Verb } from './models/Verb';
 import { VerbAttribute } from './models/VerbAttribute';
 import { Tools } from './utils/tools';
+import { MatDialog } from '@angular/material/dialog';
+import { FinalDialogService } from './services/finalDialog.service';
 
 @Component({
   selector: 'app-root',
@@ -23,15 +25,20 @@ export class AppComponent implements OnInit {
   selectedGapLetter: string = "";
 
   constructor(private verbsService: VerbsService,
+    private finalDialogService: FinalDialogService,
+    public dialog: MatDialog,
     private tools: Tools) { }
 
   ngOnInit(): void {
+    this.getValues();
+    }
+
+  private getValues() {
     this.verb = this.getRandomVerb();
     this.getRandomVerbAttributes(this.verb);
     this.completeVerbAttribute = Array.from(this.gappedVerbAttribute.attribute);
     this.btnGappedVerbAttribute = this.getRandomGapsGappedVerbAttribute(this.gappedVerbAttribute.attribute);
     this.btnRandomLetters = this.getRandomLetters(this.completeVerbAttribute, this.btnGappedVerbAttribute);
-    this.disableFilledButtons();
   }
 
   private getRandomVerb(): Verb {
@@ -53,28 +60,37 @@ export class AppComponent implements OnInit {
     return this.tools.randomLetters(gappedVerbAttribute, btnGappedVerbAttribute);
   }
 
-  private disableFilledButtons() {
-    for (let letter of this.btnGappedVerbAttribute) {
-      if (letter != " ") {
-        this.hasLetter = true;
+  public checkResult(resultArray: string[]) {
+    let success: boolean = true;
+    for (let i = 0; i < resultArray.length; i++) {
+      if (resultArray[i] != this.gappedVerbAttribute.attribute[i]) {
+        success = false;
+        this.finalDialogService.confirm(success, 'Oh shit... Wrong answer...',
+          'The correct word was ', this.gappedVerbAttribute.attribute);
+        break;
       }
-      else {
-        this.hasLetter = false;
-      }
+    }
+    if (success) {
+      this.finalDialogService.confirm(success, 'Yeah Right!!! Nice answer!',
+        'Perfect spelling of ', this.gappedVerbAttribute.attribute);
     }
   }
 
-  public btnGappedVerbOnClick(letter: string) {
-    if (this.isRandomLetterSlelectedFirst) {
-      this.selectedGapLetter = this.selectedLetter;
-    }
-    else {
-    }
+  public newWord() {
+    this.resetValues();
+    this.getValues();
+  }
+
+  private resetValues() {
+    this.verb = null;
+    this.clueVerbAttribute = null;
+    this.gappedVerbAttribute = null;
+    this.completeVerbAttribute = [];
+    this.btnGappedVerbAttribute = [];
+    this.btnRandomLetters = [];
     this.isRandomLetterSlelectedFirst = false;
-  }
-
-  public btnRandomLettersOnClick(letter: string) {
-    this.selectedLetter = letter;
-    this.isRandomLetterSlelectedFirst = true;
+    this.hasLetter = false;
+    this.selectedLetter = "";
+    this.selectedGapLetter = "";
   }
 }

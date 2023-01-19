@@ -4,13 +4,15 @@
     <h2 class="verb">{{clueVerbAttribute.attribute}}</h2>
     <h2 class="simpleText">Complete the gaps to write it in <a class="clue">{{gappedVerbAttribute.attributeType}}</a></h2>
     <div class="btnContainer">
-        <button mat-raised-button class="btnLetter" id="gap" *ngFor="let letter of btnGappedVerbAttribute" (click)="btnGappedVerbOnClick(letter)">
-            {{letter}}
-        </button>
+        <app-letter-button-renderer [btnGappedVerbAttribute]="btnGappedVerbAttribute" (finalEvent)="checkResult($event)">
+        </app-letter-button-renderer>
     </div>
     <div class="btnContainer">
-        <button mat-raised-button class="btnLetter" id="random" *ngFor="let letter of btnRandomLetters" (click)="btnRandomLettersOnClick(letter)">
-            {{letter}}
-        </button>
+      <app-letter-button-renderer [btnRandomLetters]="btnRandomLetters"></app-letter-button-renderer>
     </div>
+  <div class="btnContainer">
+    <button mat-raised-button id="btnNewWord" (click)="newWord()">
+      New word
+    </button>
+  </div>
 </div>

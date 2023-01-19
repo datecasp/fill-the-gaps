@@ -1,1 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
+.btnLetter {
+  font-family: 'Ink Free';
+  font-size: xx-large;
+  margin: 15px 20px;
+  font-weight: bolder;
+}
