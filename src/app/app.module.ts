@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { MatCardModule } from '@angular/material/card';
@@ -11,8 +12,9 @@ import { RandomLetterButtonComponent } from './components/random-letter-button/r
 import { LetterButtonRendererComponent } from './components/letter-button-renderer/letter-button-renderer.component';
 import { DragAndDropModule } from 'angular-draggable-droppable';
 import { BlankButtonComponent } from './components/blank-button/blank-button.component';
-import { SuccessDialogComponent } from './components/dialogs/success-dialog/success-dialog.component';
-import { FailDialogComponent } from './components/dialogs/fail-dialog/fail-dialog.component';
+import { VerbsService } from './services/verbs.service';
+import { FinalDialogService } from './services/finalDialog.service';
+import { GlobalDialogComponent } from './components/dialogs/global-dialog/global-dialog.component';
 
 @NgModule({
   declarations: [
@@ -21,8 +23,7 @@ import { FailDialogComponent } from './components/dialogs/fail-dialog/fail-dialo
     RandomLetterButtonComponent,
     LetterButtonRendererComponent,
     BlankButtonComponent,
-    SuccessDialogComponent,
-    FailDialogComponent
+    GlobalDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -30,9 +31,10 @@ import { FailDialogComponent } from './components/dialogs/fail-dialog/fail-dialo
     MatCardModule,
     DragDropModule,
     MaterialModule,
-    DragAndDropModule
+    DragAndDropModule,
+    NgbModule
   ],
-  providers: [],
+  providers: [ VerbsService, FinalDialogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

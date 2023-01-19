@@ -4,8 +4,7 @@ import { Verb } from './models/Verb';
 import { VerbAttribute } from './models/VerbAttribute';
 import { Tools } from './utils/tools';
 import { MatDialog } from '@angular/material/dialog';
-import { SuccessDialogComponent } from './components/dialogs/success-dialog/success-dialog.component';
-import { FailDialogComponent } from './components/dialogs/fail-dialog/fail-dialog.component';
+import { FinalDialogService } from './services/finalDialog.service';
 
 @Component({
   selector: 'app-root',
@@ -26,6 +25,7 @@ export class AppComponent implements OnInit {
   selectedGapLetter: string = "";
 
   constructor(private verbsService: VerbsService,
+    private finalDialogService: FinalDialogService,
     public dialog: MatDialog,
     private tools: Tools) { }
 
@@ -64,21 +64,15 @@ export class AppComponent implements OnInit {
     let success: boolean = true;
     for (let i = 0; i < resultArray.length; i++) {
       if (resultArray[i] != this.gappedVerbAttribute.attribute[i]) {
-        this.dialog.open(FailDialogComponent, {
-          data: {
-            name: this.gappedVerbAttribute.toString()
-          }
-        });
+        this.finalDialogService.confirm('Oh shit... Wrong answer...',
+          'The correct word was ', this.gappedVerbAttribute.attribute);
         success = false;
         break;
       }
     }
     if (success) {
-      this.dialog.open(SuccessDialogComponent, {
-        data: {
-          name: this.gappedVerbAttribute.toString()
-        }
-      });
+      this.finalDialogService.confirm('Yeah Right!!! Nice answer!',
+        'Perfect spelling of ', this.gappedVerbAttribute.attribute);
     }
   }
 }
