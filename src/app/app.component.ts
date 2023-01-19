@@ -75,4 +75,22 @@ export class AppComponent implements OnInit {
         'Perfect spelling of ', this.gappedVerbAttribute.attribute);
     }
   }
+
+  public newWord() {
+    this.resetValues();
+    this.getValues();
+  }
+
+  private resetValues() {
+    this.verb = null;
+    this.clueVerbAttribute = null;
+    this.gappedVerbAttribute = null;
+    this.completeVerbAttribute = [];
+    this.btnGappedVerbAttribute = [];
+    this.btnRandomLetters = [];
+    this.isRandomLetterSlelectedFirst = false;
+    this.hasLetter = false;
+    this.selectedLetter = "";
+    this.selectedGapLetter = "";
+  }
 }

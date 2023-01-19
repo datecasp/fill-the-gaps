@@ -16,7 +16,6 @@ export class LetterButtonRendererComponent implements OnInit {
 
   @Input() btnGappedVerbAttribute: string[] = [];
   @Input() btnRandomLetters: string[] = [];
-  public resultado: string[] = [];
   public droppedData: string = "";
   public index: number = -1;
   @Output() finalEvent = new EventEmitter<string[]>();
@@ -25,7 +24,6 @@ export class LetterButtonRendererComponent implements OnInit {
   droppableElement: ElementRef | any;
 
   ngOnInit(): void {
-    this.resultado = this.btnGappedVerbAttribute;
   }
 
   public charMatcher(char: string): boolean {
@@ -36,12 +34,15 @@ export class LetterButtonRendererComponent implements OnInit {
   }
 
   onDrop({ dropData }: DropEvent<string>, i: number): void {
+
     this.droppedData = dropData;
     this.index = i;
-    this.resultado[i] = dropData;
+    this.btnGappedVerbAttribute[i] = dropData;
 
-    if (this.checkFinalResult(this.resultado)) {
-      this.finalEvent.emit(this.resultado);
+    if (this.checkFinalResult(this.btnGappedVerbAttribute)) {
+      this.droppedData = "";
+      this.index = -1;
+      this.finalEvent.emit(this.btnGappedVerbAttribute);
     }
   }
 
