@@ -1,16 +1,18 @@
 <div class="container">
-    <h1>{{title}}</h1>
-
-    <mat-grid-list *ngFor="let verb of verbs" cols="4">
-        <mat-grid-tile>
-            <span matPrefix>X &nbsp;&nbsp;</span>
-            <textarea matInput>
-                {{verb.spanish}}
-            </textarea>
-        </mat-grid-tile>
-        <mat-grid-tile>{{verb.present}}</mat-grid-tile>
-        <mat-grid-tile>{{verb.past}}</mat-grid-tile>
-        <mat-grid-tile>{{verb.participle}}</mat-grid-tile>
-
-    </mat-grid-list>
+    <h1 class="title">{{title}}</h1>
+    <h2 class="simpleText">If this verb in <a class="clue">{{clueVerbAttribute.attributeType}}</a> is </h2>
+    <h2 class="verb">{{clueVerbAttribute.attribute}}</h2>
+    <h2 class="simpleText">Complete the gaps to write it in <a class="clue">{{gappedVerbAttribute.attributeType}}</a></h2>
+    <div class="btnContainer">
+        <app-letter-button-renderer [btnGappedVerbAttribute]="btnGappedVerbAttribute" (finalEvent)="checkResult($event)">
+        </app-letter-button-renderer>
+    </div>
+    <div class="btnContainer">
+      <app-letter-button-renderer [btnRandomLetters]="btnRandomLetters"></app-letter-button-renderer>
+    </div>
+  <div class="btnContainer">
+    <button mat-raised-button id="btnNewWord" (click)="newWord()">
+      New word
+    </button>
+  </div>
 </div>
