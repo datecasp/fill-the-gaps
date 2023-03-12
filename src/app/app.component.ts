@@ -85,7 +85,7 @@ export class AppComponent implements OnInit {
         success = false;
         this.finalDialogService.confirm(
           success,
-          'Yuuppsss, close but worng answer!',
+          'Yuuppsss, close but wrong answer!',
           'The correct word was ',
           this.gappedVerbAttribute.attribute
         );
