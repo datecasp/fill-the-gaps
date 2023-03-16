@@ -9,7 +9,7 @@ import { FinalDialogService } from './services/finalDialog.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
   title = 'Fill the gaps';
@@ -21,24 +21,34 @@ export class AppComponent implements OnInit {
   btnRandomLetters: string[] | any;
   isRandomLetterSlelectedFirst: boolean = false;
   hasLetter: boolean = false;
-  selectedLetter: string = "";
-  selectedGapLetter: string = "";
+  selectedLetter: string = '';
+  selectedGapLetter: string = '';
+  imgMenuIcon: string = './assets/rubik.png';
+  imgMenuIconHover: string = './assets/rubik-hover.png';
+  imgSrc: string = this.imgMenuIcon;
 
-  constructor(private verbsService: VerbsService,
+  constructor(
+    private verbsService: VerbsService,
     private finalDialogService: FinalDialogService,
     public dialog: MatDialog,
-    private tools: Tools) { }
+    private tools: Tools
+  ) {}
 
   ngOnInit(): void {
     this.getValues();
-    }
+  }
 
   private getValues() {
     this.verb = this.getRandomVerb();
     this.getRandomVerbAttributes(this.verb);
     this.completeVerbAttribute = Array.from(this.gappedVerbAttribute.attribute);
-    this.btnGappedVerbAttribute = this.getRandomGapsGappedVerbAttribute(this.gappedVerbAttribute.attribute);
-    this.btnRandomLetters = this.getRandomLetters(this.completeVerbAttribute, this.btnGappedVerbAttribute);
+    this.btnGappedVerbAttribute = this.getRandomGapsGappedVerbAttribute(
+      this.gappedVerbAttribute.attribute
+    );
+    this.btnRandomLetters = this.getRandomLetters(
+      this.completeVerbAttribute,
+      this.btnGappedVerbAttribute
+    );
   }
 
   private getRandomVerb(): Verb {
@@ -46,9 +56,11 @@ export class AppComponent implements OnInit {
   }
 
   private getRandomVerbAttributes(verb: Verb) {
-    this.clueVerbAttribute = this.verbsService.getRandomVerbAttributesService(verb);
+    this.clueVerbAttribute =
+      this.verbsService.getRandomVerbAttributesService(verb);
     do {
-      this.gappedVerbAttribute = this.verbsService.getRandomVerbAttributesService(verb);
+      this.gappedVerbAttribute =
+        this.verbsService.getRandomVerbAttributesService(verb);
     } while (this.gappedVerbAttribute.id == this.clueVerbAttribute.id);
   }
 
@@ -56,8 +68,14 @@ export class AppComponent implements OnInit {
     return this.tools.gappedArray(attribute);
   }
 
-  private getRandomLetters(gappedVerbAttribute: string[], btnGappedVerbAttribute: string[]): string[] {
-    return this.tools.randomLetters(gappedVerbAttribute, btnGappedVerbAttribute);
+  private getRandomLetters(
+    gappedVerbAttribute: string[],
+    btnGappedVerbAttribute: string[]
+  ): string[] {
+    return this.tools.randomLetters(
+      gappedVerbAttribute,
+      btnGappedVerbAttribute
+    );
   }
 
   public checkResult(resultArray: string[]) {
@@ -65,14 +83,22 @@ export class AppComponent implements OnInit {
     for (let i = 0; i < resultArray.length; i++) {
       if (resultArray[i] != this.gappedVerbAttribute.attribute[i]) {
         success = false;
-        this.finalDialogService.confirm(success, 'Oh shit... Wrong answer...',
-          'The correct word was ', this.gappedVerbAttribute.attribute);
+        this.finalDialogService.confirm(
+          success,
+          'Yuuppsss, close but wrong answer!',
+          'The correct word was ',
+          this.gappedVerbAttribute.attribute
+        );
         break;
       }
     }
     if (success) {
-      this.finalDialogService.confirm(success, 'Yeah Right!!! Nice answer!',
-        'Perfect spelling of ', this.gappedVerbAttribute.attribute);
+      this.finalDialogService.confirm(
+        success,
+        'Yeah Right!!! Nice answer!',
+        'Perfect spelling of ',
+        this.gappedVerbAttribute.attribute
+      );
     }
   }
 
@@ -90,7 +116,13 @@ export class AppComponent implements OnInit {
     this.btnRandomLetters = [];
     this.isRandomLetterSlelectedFirst = false;
     this.hasLetter = false;
-    this.selectedLetter = "";
-    this.selectedGapLetter = "";
+    this.selectedLetter = '';
+    this.selectedGapLetter = '';
+  }
+
+  public onClick() {
+    const baseUrl = 'https://datecasp.github.io';
+    const gameUrl = '/spain-aacc-quizz';
+    window.open(baseUrl + gameUrl);
   }
 }

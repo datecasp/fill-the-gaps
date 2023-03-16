@@ -1,4 +1,9 @@
 <div class="container">
+  <button type="button" mat-raised-button id="btnGames" (click)="onClick()">
+            <img [src]="imgSrc" width="60dp"
+            (mouseover)="imgSrc = this.imgMenuIconHover" 
+            (mouseout)="imgSrc = this.imgMenuIcon"/>
+        </button>
     <h1 class="title">{{title}}</h1>
     <p class="simpleText">If this verb in <span class="clue">{{clueVerbAttribute.attributeType}}</span> is </p>
     <h2 class="verb">{{clueVerbAttribute.attribute}}</h2>

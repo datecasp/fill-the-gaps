@@ -92,11 +92,20 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "https://datecasp.github.io/fill-the-gaps/"
+          }
         }
       }
+
     }
-  },
-  "cli": {
-    "analytics": false
+    },
+    "cli": {
+      "analytics": false
+    
   }
+
 }

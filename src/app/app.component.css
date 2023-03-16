@@ -75,3 +75,11 @@
   border-style: dashed;
 }
 
+#btnGames {
+  width: 90px;
+  height: 90px;
+  left: 50px;
+  top: 10%;
+  position: absolute;
+}
+
